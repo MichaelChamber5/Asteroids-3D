@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    [SerializeField] SceneManager sceneManager;
 
     [SerializeField] float moveSpeed;
     [SerializeField] float tiltSpeed;
@@ -14,6 +15,8 @@ public class NewBehaviourScript : MonoBehaviour
 
     [SerializeField] GameObject laser1;
     [SerializeField] GameObject laser2;
+
+    [SerializeField] GameObject explosion;
 
     [SerializeField] float coolDown = 0.5f;
 
@@ -74,5 +77,9 @@ public class NewBehaviourScript : MonoBehaviour
     {
         //die
         print("KABOOM");
+        GameObject exp = Instantiate(explosion, transform.position, Quaternion.identity);
+        exp.transform.localScale = exp.transform.localScale * 1.5f;
+        sceneManager.EndGame();
+        Destroy(gameObject);
     }
 }

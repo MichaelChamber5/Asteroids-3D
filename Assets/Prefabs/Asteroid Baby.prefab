@@ -320,6 +320,7 @@ MonoBehaviour:
   child: {fileID: 0}
   minSpeed: 0
   maxSpeed: 0
+  explosion: {fileID: 6513095134661195050, guid: 36e3cf6fed79f204da805408a5dc4295, type: 3}
   isChild: 1
 --- !u!135 &8297373686751168609
 SphereCollider:

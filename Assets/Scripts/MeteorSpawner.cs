@@ -31,7 +31,7 @@ public class MeteorSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(pool.NumActive() < (pool.Size() - (pool.Size() * percentAllowed)))
+        if(ship != null && pool.NumActive() < (pool.Size() - (pool.Size() * percentAllowed)))
         {
             SpawnMeteor();
         }

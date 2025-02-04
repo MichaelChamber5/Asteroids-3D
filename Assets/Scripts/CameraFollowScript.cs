@@ -12,13 +12,13 @@ public class CameraFollowScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.position = focus.transform.position + (focus.transform.rotation * offsetVector);
-        //transform.LookAt(focus.transform.position, transform.up);
+        if (focus != null)
+        {
+            // Maintain offset while matching the ship's rotation
+            transform.position = focus.transform.position + (focus.transform.rotation * offsetVector);
 
-        // Maintain offset while matching the ship's rotation
-        transform.position = focus.transform.position + (focus.transform.rotation * offsetVector);
-
-        // Ensure camera follows the ship’s rotation completely, including roll
-        transform.rotation = focus.transform.rotation;
+            // Ensure camera follows the ship’s rotation completely, including roll
+            transform.rotation = focus.transform.rotation;
+        }
     }
 }

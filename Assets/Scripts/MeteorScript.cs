@@ -12,8 +12,12 @@ public class MeteorScript : MonoBehaviour
     [SerializeField] float minSpeed;
     [SerializeField] float maxSpeed;
 
+    [SerializeField] GameObject explosion;
+
     GameObject ship;
     GameObject meteorSpawner;
+    GameObject scoreManager;
+    ScoreManager scoreManagerScript;
     float despawnRange = 1000;
 
     public bool isChild;
@@ -24,6 +28,8 @@ public class MeteorScript : MonoBehaviour
         {
             meteorSpawner = GameObject.Find("MeteorSpawner");
             ship = GameObject.Find("Ship");
+            scoreManager = GameObject.Find("ScoreManager");
+            scoreManagerScript = scoreManager.GetComponent<ScoreManager>();
             despawnRange = meteorSpawner.GetComponent<MeteorSpawner>().GetDespawnRange();
         }
     }
@@ -32,9 +38,12 @@ public class MeteorScript : MonoBehaviour
     {
         if (!testing)
         {
-            if (gameObject.activeSelf && (ship.transform.position - transform.position).magnitude > despawnRange)
+            if (ship != null)
             {
-                gameObject.SetActive(false);
+                if (gameObject.activeSelf && (ship.transform.position - transform.position).magnitude > despawnRange)
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }
 
@@ -48,7 +57,10 @@ public class MeteorScript : MonoBehaviour
     {
         //play explosion
         //explosion effect
+        GameObject exp = Instantiate(explosion, transform.position, Quaternion.identity);
+        exp.transform.localScale = transform.localScale/10;
         //add to score
+        scoreManagerScript.IncreaseScore(1);
 
         if(!isChild)
         {

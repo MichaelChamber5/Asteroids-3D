@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 307157837}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8, y: 0, z: 3}
+  m_LocalPosition: {x: -2.8, y: 0, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -610,9 +610,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ship: {fileID: 783060219}
   meteor: {fileID: 151664, guid: fa49e460baf435b4780da7196c2ab473, type: 3}
-  maxMeteors: 500
-  minSpawnDistance: 400
-  maxSpawnDistance: 800
+  maxMeteors: 600
+  minSpawnDistance: 700
+  maxSpawnDistance: 1000
   minSize: 5
   maxSize: 60
 --- !u!4 &753344272
@@ -675,13 +675,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneManager: {fileID: 50476910}
-  moveSpeed: 120
+  initialMoveSpeed: 100
   tiltSpeed: 3
   rollSpeed: 3.5
   laser1: {fileID: 307157837}
   laser2: {fileID: 901944268}
   explosion: {fileID: 6513095134661195050, guid: 36e3cf6fed79f204da805408a5dc4295, type: 3}
-  coolDown: 0.35
+  coolDown: 0.5
 --- !u!114 &783060223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,7 +938,7 @@ Transform:
   m_GameObject: {fileID: 901944268}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.8, y: 0, z: 3}
+  m_LocalPosition: {x: 2.8, y: 0, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

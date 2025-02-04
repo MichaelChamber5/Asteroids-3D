@@ -7,7 +7,7 @@ public class LaserFire : MonoBehaviour
     //public Transform laserOrigin;
     public float gunRange = 500f;
     public float fireRate = 0.3f;
-    public float laserDuration = 0.1f;
+    public float laserDuration = 0.05f;
 
     LineRenderer laserLine;
 
@@ -39,7 +39,7 @@ public class LaserFire : MonoBehaviour
     IEnumerator ShootLaser()
     {
         laserLine.enabled = true;
-        yield return new WaitForSeconds(laserDuration);
+        yield return new WaitForSeconds(0.05f);
         laserLine.enabled = false;
     }
 }

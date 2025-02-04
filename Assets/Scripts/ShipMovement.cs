@@ -9,7 +9,9 @@ public class NewBehaviourScript : MonoBehaviour
 {
     [SerializeField] SceneManager sceneManager;
 
-    [SerializeField] float moveSpeed;
+    float waitTime = 1;
+
+    [SerializeField] float initialMoveSpeed;
     [SerializeField] float tiltSpeed;
     [SerializeField] float rollSpeed;
 
@@ -42,6 +44,17 @@ public class NewBehaviourScript : MonoBehaviour
         l1 = laser1.GetComponent<LaserFire>();
         l2 = laser2.GetComponent<LaserFire>();
         rb = GetComponent<Rigidbody>();
+
+        StartCoroutine(IncreaseSpeed());
+    }
+
+    IEnumerator IncreaseSpeed()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(waitTime);
+            initialMoveSpeed++;
+        }
     }
 
     private void FixedUpdate()
@@ -49,7 +62,7 @@ public class NewBehaviourScript : MonoBehaviour
         currentTilt = Mathf.Lerp(currentTilt, tiltDirection, Time.deltaTime * tiltAcceleration);
         currentRoll = Mathf.Lerp(currentRoll, rollDirection, Time.deltaTime * rollAcceleration);
 
-        rb.velocity = rb.transform.forward * moveSpeed;
+        rb.velocity = rb.transform.forward * initialMoveSpeed;
         transform.rotation = transform.rotation * Quaternion.Euler(currentTilt * tiltSpeed, 0, -currentRoll * rollSpeed);
     }
 

@@ -53,8 +53,10 @@ public class MeteorSpawner : MonoBehaviour
         float size = Random.Range(minSize, maxSize);
 
         temp.transform.position = spawnPosition;
-        temp.transform.localScale = new Vector3(size, size, size);
+        
         temp.SetActive(true);
+
+        temp.GetComponent<MeteorScript>().GrowFunction(size);
     }
 
     private int NegPos()

@@ -9,6 +9,10 @@ public class NewBehaviourScript : MonoBehaviour
 {
     [SerializeField] SceneManager sceneManager;
 
+    [SerializeField] AudioClip laserSound;
+    [SerializeField] AudioClip backBeep;
+    AudioSource audSource;
+
     float waitTime = 1;
 
     [SerializeField] float initialMoveSpeed;
@@ -19,6 +23,7 @@ public class NewBehaviourScript : MonoBehaviour
     [SerializeField] GameObject laser2;
 
     [SerializeField] GameObject explosion;
+    [SerializeField] GameObject deathSound;
 
     [SerializeField] float coolDown = 0.5f;
 
@@ -40,6 +45,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void Start()
     {
+        audSource= GetComponent<AudioSource>();
         nextFireTime = Time.time;
         l1 = laser1.GetComponent<LaserFire>();
         l2 = laser2.GetComponent<LaserFire>();
@@ -80,6 +86,7 @@ public class NewBehaviourScript : MonoBehaviour
     {
         if(nextFireTime < Time.time)
         {
+            audSource.PlayOneShot(laserSound);
             l1.Shoot();
             l2.Shoot();
             nextFireTime = Time.time + coolDown;
@@ -91,8 +98,20 @@ public class NewBehaviourScript : MonoBehaviour
         //die
         print("KABOOM");
         GameObject exp = Instantiate(explosion, transform.position, Quaternion.identity);
+        Instantiate(deathSound, transform.position, Quaternion.identity);
         exp.transform.localScale = exp.transform.localScale * 1.5f;
         sceneManager.EndGame();
         Destroy(gameObject);
+    }
+
+    void OnBack()
+    {
+        audSource.PlayOneShot(backBeep);
+        Invoke("Return", 0.8f);
+    }
+
+    void Return()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 }

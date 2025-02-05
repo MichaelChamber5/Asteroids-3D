@@ -8,16 +8,22 @@ using UnityEngine.UI;
 public class SceneManager : MonoBehaviour
 {
     [SerializeField] Image panel;
+    [SerializeField] GameObject scoreManager;
 
     public void EndGame()
     {
+        if (!PlayerPrefs.HasKey("Highscore") || (PlayerPrefs.HasKey("Highscore") && PlayerPrefs.GetInt("Highscore") < scoreManager.GetComponent<ScoreManager>().GetScore()))
+        {
+            PlayerPrefs.SetInt("Highscore", scoreManager.GetComponent<ScoreManager>().GetScore());
+        }
+        PlayerPrefs.SetInt("Score", scoreManager.GetComponent<ScoreManager>().GetScore());
         Invoke("BlackenScreen", 1);
         Invoke("Restart", 2.5f);
     }
 
     void Restart()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Space");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("EndScreen");
     }
 
     void BlackenScreen()

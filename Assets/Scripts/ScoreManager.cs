@@ -25,4 +25,8 @@ public class ScoreManager : MonoBehaviour
         score += incAmount;
         UpdateText();
     }
+
+    public int GetScore() {
+        return score;
+    }
 }

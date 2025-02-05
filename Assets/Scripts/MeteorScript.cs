@@ -53,6 +53,21 @@ public class MeteorScript : MonoBehaviour
         }
     }
 
+    public void GrowFunction(float size)
+    {
+        StartCoroutine(GrowToSize(size));
+    }
+
+    IEnumerator GrowToSize(float size)
+    {
+        transform.localScale = Vector3.zero;
+        while (transform.localScale.x < size)
+        {
+            transform.localScale = new Vector3(transform.localScale.x + 1, transform.localScale.y + 1, transform.localScale.z + 1);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+
     public void Pop()
     {
         //play explosion
